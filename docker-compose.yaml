@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+
+  db:
+    image: postgres
+    container_name: postgres_web_socket
+    volumes:
+       - postgres:/data/postgres
+    environment:
+      POSTGRES_PASSWORD: 123456
+      POSTGRES_USER: root
+      POSTGRES_DB: websocket
+      PGDATA: /data/postgres
+    ports:
+      - 5432:5432
+    networks:
+      - postgres
+    restart: unless-stopped
+
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+    postgres:
